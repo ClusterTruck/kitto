@@ -46,6 +46,10 @@ class Kitto {
     config.widget_margins = [5, 5];
     config.columns = 4;
 
+    if (resolution == "1440") {
+      config.columns = 6;
+    }
+
     if (resolution == "1080") {
       config.widget_base_dimensions = [370, 340];
       config.columns = 5;
