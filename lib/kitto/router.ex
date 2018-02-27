@@ -39,6 +39,14 @@ defmodule Kitto.Router do
     end
   end
 
+  get "dashboards/:dashboard/:id" do
+    if View.exists?(dashboard) do
+      conn |> render(dashboard, [id: id])
+    else
+      render_error(conn, 404, "Dashboard does not exist")
+    end
+  end
+
   get "dashboards/*id" do
     path = Enum.join(id, "/")
 
