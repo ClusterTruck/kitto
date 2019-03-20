@@ -49,7 +49,7 @@ defmodule Kitto.Router do
     end
   end
 
-  get "dashboards/:id" do
+  get "dashboards/*id" do
     path = Enum.join(id, "/")
 
     if View.exists?(path) do
