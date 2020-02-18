@@ -5,9 +5,9 @@ import fscreen from 'fscreen';
 window.jQuery = window.$ = $;
 
 class Kitto {
-  static start() {
+  static start(opts = {}) {
     Kitto
-      .initializeGridster()
+      .initializeGridster(opts)
       .initializeRotator()
       .initializeFullScreenButton();
   }
@@ -20,7 +20,7 @@ class Kitto {
     }
   }
 
-  static initializeGridster() {
+  static initializeGridster(opts = {}) {
     window.Gridster = Gridster;
 
     const $gridster = $('.gridster');
@@ -31,10 +31,16 @@ class Kitto {
 
     $gridster.width(config.content_width);
 
-    $('.gridster > ul').gridster({
+    const gridster = $('.gridster > ul').gridster({
       widget_margins: config.widget_margins,
       widget_base_dimensions: config.widget_base_dimensions,
-    });
+    })
+
+    if (opts && opts.disableDrag) {
+      console.log('disable');
+      gridster.data('gridster').disable();
+    }
+    else { console.log('no disable'); }
 
     return this;
   }
